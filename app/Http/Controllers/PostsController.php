@@ -44,6 +44,8 @@ class PostsController extends Controller
         // $res = DB::table('post')->pluck('title', 'content');
 
         // $res = DB::table('post')->orderBy('id', 'desc')->get();
+        // multiple orderby
+        // $res = DB::table('post')->orderBy('id', 'desc')->orderBy('likes', 'asc')->get();
 
         // aggregate
         // $res = DB::table('post')->count();
@@ -84,7 +86,77 @@ class PostsController extends Controller
         //     ->get();
 
 
-        // or where clause thi baki
+        // $res = DB::table('post')->whereBetween('likes', [5, 11])->get();
+
+        // $res = DB::table('post')->whereIn('likes', [5, 9])->get();
+
+        // where colum method use to work with 2 colum of row 
+        // hear it will check where likes  = id of same rows value
+        // $res = DB::table('post')->whereColumn('likes', 'id')->get();
+        // $res = DB::table('post')->whereColumn('likes', '>', 'id')->get();
+
+        // logical grouping 
+        // visit to https://laravel.com/docs/8.x/queries#logical-grouping for more info 
+        // in logical grouping
+        // also see Advanced Where Clauses
+        // $res = DB::table('post')
+        //     ->where('title', 'first')
+        //     ->orWhere(function ($q) {
+        //         $q->where('likes', '>', 6)
+        //             ->orWhere('id', 4);
+        //     })->get();
+
+
+        // also see latest and oldest methods
+
+
+
+        // when is use when you want to execute difrent queries base on condations
+        // first param is boolean 
+        // seccond in callback when first is true and third is default call back (when 1 param is false)
+        // $tmp = 'id';
+
+        // $res = DB::table('post')
+        //     ->when($tmp == 'id', function ($q) {
+        //         $q->orderBy('id', 'desc');
+        //     })->get();
+
+        // $res = DB::table('post')
+        //     ->when($tmp == 'id', function ($q) {
+        //         $q->orderBy('id', 'desc');
+        //     }, function ($q) {
+        //         $q->orderBy('likes', 'asc');
+        //     })->get();
+
+
+        // insert
+        // $res = DB::table('post')->insert([
+        //     'title' => 'fifth',
+        //     'content' => 'ghkj hsdkja ',
+        //     'likes' => '6'
+        // ]);
+
+        // check insert method for multiple records same time and 
+        // insertOrIgnore, insertGetId, upsert methods
+
+
+        // $res = DB::table('post')->where('id', 2)->update([
+        //     'title' => 'second updated',
+        //     'content' => 'sdlhjafuik dfshdsu'
+        // ]);
+        // check updateOrInsert , Updating JSON Columns , Increment & Decrement as well
+
+        $res = DB::table('post')->where('id', 6)->delete();
+
+
+
+
+
+
+
+
+
+
 
 
 
